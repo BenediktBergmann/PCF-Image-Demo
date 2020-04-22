@@ -4,9 +4,6 @@ export class IconDemoComponent implements ComponentFramework.StandardControl<IIn
 
 	private imgElement:HTMLImageElement;
 
-	// PowerApps component framework framework context, "Input Properties" containing the parameters, control metadata and interface functions.
-    private _context: ComponentFramework.Context<IInputs>;
-
 	/**
 	 * Empty constructor.
 	 */
@@ -25,11 +22,9 @@ export class IconDemoComponent implements ComponentFramework.StandardControl<IIn
 	 */
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement)
 	{
-		this._context = context;
-
 		// get image resource (see: https://docs.microsoft.com/en-us/powerapps/developer/component-framework/reference/resources/getresource ) 	
 		this.imgElement = document.createElement("img");
-		this._context.resources.getResource("user.png", this.setImage.bind(this, false, "png"), this.showError.bind(this));
+		context.resources.getResource("user.png", this.setImage.bind(this, false, "png"), this.showError.bind(this));
 		
 		container.appendChild(this.imgElement);
 	}
